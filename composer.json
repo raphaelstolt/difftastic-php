@@ -1,0 +1,48 @@
+{
+    "name": "stolt/difftastic-php",
+    "description": "PHP wrapper around the difftastic CLI.",
+    "keywords": ["difftastic", "wrapper", "dev"],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Stolt\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Stolt\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Raphael Stolt",
+            "email": "raphael.stolt@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-with-coverage": "export XDEBUG_MODE=coverage && phpunit --coverage-html coverage-reports",
+        "cs-fix": "php-cs-fixer --allow-risky=yes fix . -vv || true",
+        "cs-lint": "php-cs-fixer fix --diff --stop-on-violation --verbose --dry-run --allow-risky=yes",
+        "static-analyse": "phpstan analyse --configuration phpstan.neon.dist",
+        "pre-commit-check": [
+            "@test",
+            "@cs-lint",
+            "@static-analyse"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^11.4.4||^10.5.25"
+    }
+}
